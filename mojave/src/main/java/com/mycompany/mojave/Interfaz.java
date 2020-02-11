@@ -5,6 +5,7 @@
  */
 package com.mycompany.mojave;
 
+import static java.lang.Math.sqrt;
 import java.util.Vector;
 
 /**
@@ -561,12 +562,25 @@ public class Interfaz extends javax.swing.JFrame {
         Posicion posicionB = null;
         Posicion posicionC = null;
         Posicion posicionD = null;
+        float ax = Float.parseFloat(jText_ax.getText());
+        float ay = Float.parseFloat(jText_ay.getText());
+        float az = Float.parseFloat(jText_az.getText());
         float l1 = 3;
         float l2 = 3;
         float l3 = 3;
-        float h = 2;
+        double a = 5;
+        double r = sqrt(ax*ax+ay*ay);
+        double h = sqrt(r*r+a*a);
+        double beta;
+        
+        posicionA.setTeta1(Math.acos(ax/ay));
         
         posicionA.setTeta3(Math.acos((Math.pow(h,2)-l2*l2-l3*l3)/2*l2*l3));
+        
+        beta = Math.acos((h*h+l2*l2-l3*l3)/2*h*l2);
+        
+        posicionA.setTeta2(Math.atan(a/r)-beta);
+
     }//GEN-LAST:event_jButton_empezarActionPerformed
 
     /**
